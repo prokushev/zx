@@ -1,0 +1,11 @@
+                    ; 
+                    ; NextOS
+                    ; 
+IDE_CAPACITY EQU    01B4H 
+IDE_GET_LFN EQU     01B7H 
+IDE_BROWSER EQU     01BAH 
+IDE_BANK    EQU     01BDH 
+IDE_BASIC   EQU     01C0H 
+IDE_WINDOW_LINEIN EQU 01C3H 
+IDE_WINDOW_STRING EQU 01C6H 
+IDE_INTEGER_VAR EQU 01C9H 
