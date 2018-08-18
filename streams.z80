@@ -1,0 +1,54 @@
+                CPU     Z80
+                INCLUDE "basic.z80"
+                ;
+                ; Streams routines
+                ;
+                
+                ;
+                ; Current stream
+                ;
+                
+                ; Open current stream
+                ; Input:
+                ;       A - stream number
+zx_stream_current_open:        equ     CHAN_OPEN
+                ;
+                ; Output string to current stream
+                ; Input:
+                ;       DE - output buffer
+                ;       BC - length of buffer
+zx_stream_current_output_string: equ   PR_STRING
+
+                ;
+                ; Numbered streams
+                ;
+                
+                ; Output string to stream number
+                ; Input:
+                ;       A - stream number
+                ;       DE - output buffer
+                ;       BC - length of buffer
+zx_stream_output_string:
+                push    de
+                push    bc
+                call    zx_stream_current_open
+                pop     bc
+                pop     de
+                call    zx_stream_current_output_string
+                ret
+                
+                ; Output ASCII string to stream number
+                ; Input:
+                ;       A - stream number
+                ;       DE - output buffer
+zx_stream_output_stringz:
+                push    de
+                call    zx_stream_current_open
+                pop     de
+prnz1           ld      a,(de)
+                inc     de
+                and     a
+                ret     z
+                rst     16
+                jr      prnz1
+               

@@ -1,0 +1,49 @@
+                CPU     Z80
+                ;INCLUDE "basic.z80"
+                ;
+                ; System information routines
+                ;
+                
+                ;
+                ; Detect ZX model
+                ; Output
+                ;       h - type
+                ;       l - subtype
+                ;       b - issue
+                ; Type
+                ;       0 - ZX Spectrum 16K/48K
+                ;               0 - ZX Spectrum 16K
+                ;               1 - ZX Spectrum 48K
+                ;                       0 - issue 1 or 2
+                ;                       1 - issue 3 or higher
+                
+zx_model:       ld      hl,0
+                ld	a,(75)
+                cp	191
+                zr	z, legacy
+                inc	hl
+                cp	225
+                ret	nz
+                inc	hl
+                ret
+                
+                ; Check for 16K
+legacy:         ld      a, (P_RAMT+1)
+                cp      080h
+                ret     z
+                ld      l, 1
+issue           ld	a,(BORDCR)  
+                rrca
+                rrca
+                rrca
+                or	8
+                out	(254),a
+
+                ld	bc,57342
+                in	a,(c)
+                in	a,(c)
+                ld	b,1		; true
+                xor	255
+                ret	nz
+                dec     b
+                ret                

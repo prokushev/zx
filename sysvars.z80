@@ -1,124 +1,73 @@
-KSTATE	EQU	5C00H	;	8	 - Used in reading the keyboard
-LAST_K	EQU	5C08H	;	1	 - Last key pressed
-REPDEL	EQU	5C09H	;	1	 - Time that a key must be held down before it repeats
-REPPER	EQU	5C0AH	;	1	 - Delay between successive repeats of a key held down
-DEFADD	EQU	5C0BH	;	2	 - Address of arguments of user defined function
-K_DATA	EQU	5C0DH	;	1	 - Second byte of colour controls entered from keyboard
-TVDATA	EQU	5C0EH	;	2	 - Colour, AT and TAB controls going to television
-STRMS	EQU	5C10H	;	38	 - Addresses of channels attached to streams
-CHARS	EQU	5C36H	;	2	 - 256 less than address of character set
-RASP	EQU	5C38H	;	1	 - Length of warning buzz
-PIP		EQU	5C39H	;	1	 - Length of keyboard click
-ERR_NR	EQU	5C3AH	;	1	 - One less than the error report code
-FLAGS	EQU	5C3BH	;	1	 - Various flags to control the BASIC system
-TV_FLAG	EQU	5C3CH	;	1	 - Flags associated with the television
-5C3D	2	
-ERR-SP - Address of item on machine stack to use as error return
-5C3F	2	
-LIST-SP - Return address from automatic listing
-5C41	1	
-MODE - Specifies K, L, C, E or G cursor
-5C42	2	
-NEWPPC - Line to be jumped to
-5C44	1	
-NSPPC - Statement number in line to be jumped to
-5C45	2	
-PPC - Line number of statement being executed
-5C47	1	
-SUBPPC - Number within line of statement being executed
-5C48	1	
-BORDCR - Border colour
-5C49	2	
-E-PPC - Number of current line
-5C4B	2	
-VARS - Address of variables
-5C4D	2	
-DEST - Address of variable in assignment
-5C4F	2	
-CHANS - Address of channel data
-5C51	2	
-CURCHL - Address of information used for input and output
-5C53	2	
-PROG - Address of BASIC program
-5C55	2	
-NXTLIN - Address of next line in program
-5C57	2	
-DATADD - Address of terminator of last DATA item
-5C59	2	
-E-LINE - Address of command being typed in
-5C5B	2	
-K-CUR - Address of cursor
-5C5D	2	
-CH-ADD - Address of the next character to be interpreted
-5C5F	2	
-X-PTR - Address of the character after the '?' marker
-5C61	2	
-WORKSP - Address of temporary work space
-5C63	2	
-STKBOT - Address of bottom of calculator stack
-5C65	2	
-STKEND - Address of start of spare space
-5C67	1	
-BREG - Calculator's B register
-5C68	2	
-MEM - Address of area used for calculator's memory
-5C6A	1	
-FLAGS2 - More flags
-5C6B	1	
-DF-SZ - The number of lines in the lower part of the screen
-5C6C	2	
-S-TOP - The number of the top program line in automatic listings
-5C6E	2	
-OLDPPC - Line number to which CONTINUE jumps
-5C70	1	
-OSPCC - Number within line of statement to which CONTINUE jumps
-5C71	1	
-FLAGX - Various flags
-5C72	2	
-STRLEN - Length of string type destination in assignment
-5C74	2	
-T-ADDR - Address of next item in parameter table
-5C76	2	
-SEED - The seed for RND
-5C78	3	
-FRAMES - Frame counter
-5C7B	2	
-UDG - Address of first user defined graphic
-5C7D	2	
-COORDS - Coordinates of last point plotted
-5C7F	1	
-P-POSN - Column number of printer position
-5C80	2	
-PR-CC - Address of next position for LPRINT to print at
-5C82	2	
-ECHO-E - Column and line number of end of input buffer
-5C84	2	
-DF-CC - Address in display file of PRINT position
-5C86	2	
-DF-CCL - Like DF-CC for lower part of screen
-5C88	2	
-S-POSN - Column and line number for PRINT position
-5C8A	2	
-S-POSNL - Like S-POSN for lower part of screen
-5C8C	1	
-SCR-CT - Scroll counter
-5C8D	1	
-ATTR-P - Permanent current colours
-5C8E	1	
-MASK-P - Used for transparent colours
-5C8F	1	
-ATTR-T - Temporary current colours
-5C90	1	
-MASK-T - Temporary transparent colours
-5C91	1	
-P-FLAG - More flags
-5C92	30	
-MEMBOT - Calculator's memory area
-5CB0	2	
-NMIADD - Non-maskable interrupt address
-5CB2	2	
-RAMTOP - Address of last byte of BASIC system area
-5CB4	2	
-P-RAMT - Address of last byte of physical RAM
-5CB6	21	
-Channel information
+                ;
+                ; Standard BASIC ROM system variables
+                ;
+                CPU     Z80
+KSTATE          EQU	5C00H	;	8	 - Used in reading the keyboard
+LAST_K          EQU	5C08H	;	1	 - Last key pressed
+REPDEL	        EQU	5C09H	;	1	 - Time that a key must be held down before it repeats
+REPPER	        EQU	5C0AH	;	1	 - Delay between successive repeats of a key held down
+DEFADD	        EQU	5C0BH	;	2	 - Address of arguments of user defined function
+K_DATA	        EQU	5C0DH	;	1	 - Second byte of colour controls entered from keyboard
+TVDATA	        EQU	5C0EH	;	2	 - Colour, AT and TAB controls going to television
+STRMS	        EQU	5C10H	;	38	 - Addresses of channels attached to streams
+CHARS	        EQU	5C36H	;	2	 - 256 less than address of character set
+RASP	        EQU	5C38H	;	1	 - Length of warning buzz
+PIP             EQU	5C39H	;	1	 - Length of keyboard click
+ERR_NR	        EQU	5C3AH	;	1	 - One less than the error report code
+FLAGS	        EQU	5C3BH	;	1	 - Various flags to control the BASIC system
+TV_FLAG	        EQU	5C3CH	;	1	 - Flags associated with the television
+ERR_SP          EQU     5C3DH   ;	2        - Address of item on machine stack to use as error return
+LIST_SP         EQU     5C3FH   ;	2	 - Return address from automatic listing
+MODE            EQU     5C41H   ;	1	 - Specifies K, L, C, E or G cursor
+NEWPPC          EQU     5C42H   ;	2	 - Line to be jumped to
+NSPPC           EQU     5C44H   ;	1        - Statement number in line to be jumped to
+PPC             EQU     5C45H   ;	2	 - Line number of statement being executed
+SUBPPC          EQU     5C47H   ;	1	 - Number within line of statement being executed
+BORDCR          EQU     5C48H   ;	1	 - Border colour
+E_PPC           EQU     5C49H   ;	2	 - Number of current line
+VARS            EQU     5C4BH   ;	2	 - Address of variables
+DEST            EQU     5C4DH   ;	2	 - Address of variable in assignment
+CHANS           EQU     5C4FH   ;	2	 - Address of channel data
+CURCHL          EQU     5C51H   ;	2	 - Address of information used for input and output
+PROG            EQU     5C53H   ;	2	 - Address of BASIC program
+NXTLIN          EQU     5C55H   ;	2	 - Address of next line in program
+DATADD          EQU     5C57H   ;	2	 - Address of terminator of last DATA item
+E_LINE          EQU     5C59H   ;	2	 - Address of command being typed in
+K_CUR           EQU     5C5BH   ;	2	 - Address of cursor
+CH_ADD          EQU     5C5DH   ;	2	 - Address of the next character to be interpreted
+X_PTR           EQU     5C5FH   ;	2	 - Address of the character after the '?' marker
+WORKSP          EQU     5C61H   ;	2	 - Address of temporary work space
+STKBOT          EQU     5C63H   ;	2	 - Address of bottom of calculator stack
+STKEND          EQU     5C65H   ;	2	 - Address of start of spare space
+BREG            EQU     5C67H   ;	1	 - Calculator's B register
+MEM             EQU     5C68H   ;	2	 - Address of area used for calculator's memory
+FLAGS2          EQU     5C6AH   ;	1	 - More flags
+DF_SZ           EQU     5C6BH   ;	1	 - The number of lines in the lower part of the screen
+S_TOP           EQU     5C6CH   ;	2	 - The number of the top program line in automatic listings
+OLDPPC          EQU     5C6EH   ;	2	 - Line number to which CONTINUE jumps
+OSPCC           EQU     5C70H   ;	1	 - Number within line of statement to which CONTINUE jumps
+FLAGX           EQU     5C71H   ;	1	 - Various flags
+STRLEN          EQU     5C72H   ;	2	 - Length of string type destination in assignment
+T_ADDR          EQU     5C74H   ;	2	 - Address of next item in parameter table
+SEED            EQU     5C76H   ;	2	 - The seed for RND
+FRAMES          EQU     5C78H   ;	3	 - Frame counter
+UDG             EQU     5C7BH   ;	2	 - Address of first user defined graphic
+COORDS          EQU     5C7DH   ;	2	 - Coordinates of last point plotted
+P_POSN          EQU     5C7FH   ;	1	 - Column number of printer position
+PR_CC           EQU     5C80H   ;	2	 - Address of next position for LPRINT to print at
+ECHO_E          EQU     5C82H   ;	2	 - Column and line number of end of input buffer
+DF_CC           EQU     5C84H   ;	2	 - Address in display file of PRINT position
+DF_CCL          EQU     5C86H   ;	2	 - Like DF-CC for lower part of screen
+S_POSN          EQU     5C88H   ;	2	 - Column and line number for PRINT position
+S_POSNL         EQU     5C8AH   ;	2	 - Like S-POSN for lower part of screen
+SCR_CT          EQU     5C8CH   ;	1	 - Scroll counter
+ATTR_P          EQU     5C8DH   ;	1	 - Permanent current colours
+MASK_P          EQU     5C8EH   ;	1	 - Used for transparent colours
+ATTR_T          EQU     5C8FH   ;	1	 - Temporary current colours
+MASK_T          EQU     5C90H   ;	1	 - Temporary transparent colours
+P_FLAG          EQU     5C91H   ;	1	 - More flags
+MEMBOT          EQU     5C92H   ;	30	 - Calculator's memory area
+NMIADD          EQU     5CB0H   ;	2	 - Non-maskable interrupt address
+RAMTOP          EQU     5CB2H   ;	2	 - Address of last byte of BASIC system area
+P_RAMT          EQU     5CB4H   ;	2	 - Address of last byte of physical RAM
+CH_INFO         EQU     5CB6H   ;	21	 - Channel information

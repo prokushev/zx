@@ -1,3 +1,5 @@
-.include "3dos.z80"
-.include "idedos.z80"
-.include "nextos.z80"
+                        ;
+                        ; ZX Spectrum Next API
+                        ;
+                        INCLUDE "128p3e.z80"
+                        INCLUDE "nextos.z80"

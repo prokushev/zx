@@ -1,0 +1,13 @@
+                ;
+                ; ZX Interface 1 API
+                ;
+; 58
+	ld	hl,(23635)
+	ld	de,23813
+	sbc	hl,de
+	ld	a,h
+	or	l
+	ld	hl,0
+	ret	nz
+	inc	hl
+	ret

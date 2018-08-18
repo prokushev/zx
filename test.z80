@@ -1,0 +1,21 @@
+                cpu     z80
+                org     8000h
+                jp      main
+                include "streams.z80"
+                include "sysinfo.z801"
+main:           call    zx_query_model
+                
+                ld      a, 2
+                ld      de, text
+                call    zx_stream_output_stringz
+                ret
+                
+zx_query_model:
+                ret
+
+
+text        defb "ZX Spectrum 16K/48К", 13, 0
+            defb 0
+            
+textend     equ  $
+                

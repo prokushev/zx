@@ -1,1 +1,6 @@
-.include "3dos.z80"
+                        ;
+                        ; ZX Spectrum +3 API
+                        ;
+                        INCLUDE "128K.z80"
+                        INCLUDE "3dos.z80"
+                        INCLUDE "cpmplus.z80"
