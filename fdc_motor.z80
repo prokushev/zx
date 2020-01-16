@@ -1,0 +1,16 @@
+;
+; Управление двигателем приводов
+;		
+
+MOTOR_CONTROL:	PUSH    BC
+				LD      B, A
+				LD      A, R			; Получаем в P/V состояние прерываний
+				LD      A, B
+				LD      BC, 1FFDH
+				DI      
+				LD      (BANK678), A
+				OUT     (C), A			; Управляем двигателем
+				POP     BC
+				RET     PO
+				EI						; Восстанавливаем прерывание
+				RET     
